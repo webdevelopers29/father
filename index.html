@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Special Surprise for Papa</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #e2eafc, #c8d9e8);
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      color: #34495e;
+      font-size: 4rem;
+      text-shadow: 2px 2px #7f8c8d;
+    }
+    .special-message {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-top: 20px;
+      text-shadow: 1px 1px #95a5a6;
+    }
+    #surprise-button {
+      background-color: #2980b9;
+      color: white;
+      font-size: 1.5rem;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease-in-out;
+    }
+    #surprise-button:hover {
+      transform: scale(1.1);
+    }
+    #balloons-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background-color: transparent;
+      border-radius: 50%;
+      border: 5px solid;
+      animation: floatUp 10s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Surprise for Papa!</h1>
+  <div class='special-message'>"Papa, aapka pyar mere liye sab kuch hai!"</div>
+  <button id='surprise-button'>Press for a Big Surprise!</button>
+  <div id='balloons-container'></div>
+
+  <script>
+    const button = document.getElementById('surprise-button');
+    const balloonContainer = document.getElementById('balloons-container');
+
+    button.addEventListener('click', function() {
+      for (let i = 0; i < 100; i++) {
+        let balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.borderColor = getRandomColor();
+        balloon.style.animationDuration = (Math.random() * 3 + 7) + 's';
+        balloon.style.transform = `rotate(${Math.random() * 360}deg)`;
+        balloonContainer.appendChild(balloon);
+      }
+    });
+
+    function getRandomColor() {
+      const colors = ['#ff5e57', '#54a0ff', '#ff9ff3', '#feca57', '#1dd1a1', '#5f27cd', '#48dbfb'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
